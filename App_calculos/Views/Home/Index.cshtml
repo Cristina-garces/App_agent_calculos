@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Index</title>
+    <link href="@Url.Content("~/Scripts/css/style_calculos.css")" rel="stylesheet" />
+</head>
+<body>
+    <h2>Calcular Media</h2>
+
+    <div class="container">
+        @using (Html.BeginForm("CalculateMedia", "Home", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label for="type">Ingrese el tipo de media que desea obtener:</label>
+                <select name="type" id="type">
+                    <option value=""></option>
+                    <option value="Arithmetic">Media aritmética</option>
+                    <option value="Harmonic">Media armónica</option>
+                    <option value="Median">Mediana</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="numbers">Ingrese los números separados por comas:</label>
+                <input type="text" name="numbers" id="numbers" />
+            </div>
+
+            <button type="submit">Calcular</button>
+        }
+
+
+        @if (ViewBag.Result != null)
+        {
+            <div>
+                <label>Resultado:</label>
+                <span>@ViewBag.Result</span>
+            </div>
+        }
+
+        @if (ViewBag.Error != null)
+        {
+            <div style="color: red;">
+                <label>Error:</label>
+                <span>@ViewBag.Error</span>
+            </div>
+        }
+    </div>
+
+    <h2>Generar Escalera</h2>
+
+    <div class="container">
+        @using (Html.BeginForm("GenerateStaircase", "Home", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label for="size">Ingrese el tamaño de la escalera:</label>
+                <input type="number" name="size" id="size" min="1" max="99" />
+            </div>
+
+            <div class="form-group">
+                <label for="agentType">Tipo de agente:</label>
+                <select name="agentType" id="agentType">
+                    <option value=""></option>
+                    <option value="A">Agente A</option>
+                    <option value="B">Agente B</option>
+                    <option value="C">Agente C</option>
+                </select>
+            </div>
+
+            <button type="submit">Generar Escalera</button>
+        }
+
+        @if (ViewBag.Staircase != null)
+        {
+            <pre>@Html.Raw(ViewBag.Staircase)</pre>
+        }
+    </div>
+</body>
+</html>
